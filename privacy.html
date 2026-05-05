@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Email Triage</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #fff8f2; color: #1c2949; }
+    header { background: linear-gradient(135deg, #e64f0a 0%, #f28020 100%); color: white; padding: 40px 24px 32px; }
+    header h1 { font-size: 1.8rem; font-weight: 900; }
+    header p { margin-top: 8px; opacity: 0.85; font-size: 0.9rem; }
+    main { max-width: 640px; margin: 0 auto; padding: 40px 24px; }
+    h2 { font-size: 1.1rem; font-weight: 700; margin: 32px 0 10px; }
+    p, li { font-size: 0.95rem; line-height: 1.7; color: #1c2949cc; }
+    ul { padding-left: 20px; margin-top: 8px; }
+    li { margin-bottom: 6px; }
+    footer { text-align: center; padding: 32px 24px; font-size: 0.85rem; color: #1c294966; }
+    footer a { color: #e64f0a; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Privacy Policy</h1>
+    <p>Email Triage &nbsp;·&nbsp; Last updated: 5 May 2025</p>
+  </header>
+  <main>
+    <h2>Overview</h2>
+    <p>Email Triage is an iOS app that classifies your Gmail inbox entirely on your device. This policy explains what data the app accesses, how it is used, and what is never done with it.</p>
+
+    <h2>Data the app accesses</h2>
+    <p>Email Triage requests access to your Gmail account using Google's OAuth2 flow. Specifically, the app uses the <code>gmail.modify</code> scope to:</p>
+    <ul>
+      <li>Read email subjects, senders, snippets, and Gmail category labels for classification</li>
+      <li>Apply Gmail labels to organise your inbox</li>
+      <li>Remove the Inbox label from classified messages</li>
+    </ul>
+
+    <h2>Where your data goes</h2>
+    <p>Your email data never leaves your device or your own Google account. Specifically:</p>
+    <ul>
+      <li>Classification runs entirely on-device using Apple Intelligence (iOS 18.1+) via Apple's FoundationModels framework</li>
+      <li>No email content is transmitted to any server operated by the developer</li>
+      <li>No analytics, crash reporting, or telemetry services are included in the app</li>
+    </ul>
+
+    <h2>Data storage</h2>
+    <p>Any data stored locally by the app (such as Gmail label snapshots) is stored in your device's private Application Support directory and is not backed up to iCloud or shared with any third party.</p>
+    <p>Your Google OAuth credentials are stored in the iOS Keychain and are never logged or transmitted.</p>
+
+    <h2>Data sharing</h2>
+    <p>We do not sell, share, or transfer your personal data to any third party for any purpose.</p>
+
+    <h2>Your rights</h2>
+    <p>You can revoke Email Triage's access to your Gmail account at any time via your <a href="https://myaccount.google.com/permissions">Google Account permissions page</a>. Signing out within the app also fully disconnects the OAuth session.</p>
+
+    <h2>Children</h2>
+    <p>Email Triage is not directed at children under 13 and does not knowingly collect data from children.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes materially, the updated date at the top of this page will be revised. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy: <a href="mailto:ios-email-triage@grahamveitch.com">ios-email-triage@grahamveitch.com</a></p>
+  </main>
+  <footer>
+    <p><a href="index.html">← Email Triage</a></p>
+  </footer>
+</body>
+</html>

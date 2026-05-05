@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Triage — Private AI inbox sorting for iOS</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #fff8f2; color: #1c2949; }
+    header { background: linear-gradient(135deg, #e64f0a 0%, #f28020 100%); color: white; padding: 64px 24px 48px; text-align: center; }
+    header h1 { font-size: 2.4rem; font-weight: 900; letter-spacing: -0.5px; }
+    header p { margin-top: 16px; font-size: 1.1rem; opacity: 0.92; max-width: 480px; margin-left: auto; margin-right: auto; }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 24px; }
+    .features { display: grid; gap: 24px; margin-top: 32px; }
+    .feature { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(28,41,73,0.08); }
+    .feature h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .feature p { font-size: 0.95rem; color: #1c294999; line-height: 1.6; }
+    footer { text-align: center; padding: 32px 24px; font-size: 0.85rem; color: #1c294966; }
+    footer a { color: #e64f0a; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Email Triage</h1>
+    <p>On-device AI that sorts your Gmail inbox — without your email ever leaving your phone.</p>
+  </header>
+  <main>
+    <div class="features">
+      <div class="feature">
+        <h2>🔒 Your data stays on your device</h2>
+        <p>Email Triage reads your inbox using your own Google account credentials. No email content is sent to any server owned by the developer. Classification runs on-device using Apple Intelligence.</p>
+      </div>
+      <div class="feature">
+        <h2>📱 iOS native</h2>
+        <p>Built in Swift and SwiftUI for iPhone. Uses Apple's on-device AI for classification. Falls back to your own OpenAI or Anthropic API key — never a shared backend.</p>
+      </div>
+      <div class="feature">
+        <h2>✅ You confirm before anything changes</h2>
+        <p>Email Triage shows you exactly what it classified and why before applying any labels. Bulk actions require explicit confirmation.</p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p><a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
