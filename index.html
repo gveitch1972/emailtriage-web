@@ -5,43 +5,260 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Email Triage — Private AI inbox sorting for iOS</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #fff8f2; color: #1c2949; }
-    header { background: linear-gradient(135deg, #e64f0a 0%, #f28020 100%); color: white; padding: 64px 24px 48px; text-align: center; }
-    header h1 { font-size: 2.4rem; font-weight: 900; letter-spacing: -0.5px; }
-    header p { margin-top: 16px; font-size: 1.1rem; opacity: 0.92; max-width: 480px; margin-left: auto; margin-right: auto; }
-    main { max-width: 640px; margin: 0 auto; padding: 48px 24px; }
-    .features { display: grid; gap: 24px; margin-top: 32px; }
-    .feature { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 12px rgba(28,41,73,0.08); }
-    .feature h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-    .feature p { font-size: 0.95rem; color: #1c294999; line-height: 1.6; }
-    footer { text-align: center; padding: 32px 24px; font-size: 0.85rem; color: #1c294966; }
-    footer a { color: #e64f0a; text-decoration: none; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1c2949;
+      --orange: #e64f0a;
+      --orange-light: #f28020;
+      --white: #ffffff;
+      --muted: rgba(255,255,255,0.60);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 80px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(230,79,10,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(242,128,32,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(230,79,10,0.18);
+      border: 1px solid rgba(230,79,10,0.40);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #f8a070;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #ffffff 30%, #f8a070 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 6px 24px rgba(230,79,10,0.35);
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.80);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* ── FEATURES ── */
+    .features-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange-light);
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 680px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 28px 24px;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(230,79,10,0.18);
+      border: 1px solid rgba(230,79,10,0.30);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── PRIVACY STRIP ── */
+    .privacy-strip {
+      max-width: 960px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .privacy-box {
+      background: linear-gradient(135deg, rgba(230,79,10,0.12), rgba(242,128,32,0.06));
+      border: 1px solid rgba(230,79,10,0.25);
+      border-radius: 20px;
+      padding: 32px 36px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .privacy-box .icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+
+    .privacy-box h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .privacy-box p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.30);
+    }
+
+    footer a { color: rgba(255,255,255,0.50); text-decoration: none; }
+    footer a:hover { color: var(--orange-light); }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Email Triage</h1>
-    <p>On-device AI that sorts your Gmail inbox — without your email ever leaving your phone.</p>
-  </header>
-  <main>
-    <div class="features">
-      <div class="feature">
-        <h2>🔒 Your data stays on your device</h2>
-        <p>Email Triage reads your inbox using your own Google account credentials. No email content is sent to any server owned by the developer. Classification runs on-device using Apple Intelligence.</p>
+
+  <section class="hero">
+    <div class="badge">Coming to the App Store</div>
+    <h1>Your inbox,<br>sorted in private.</h1>
+    <p>Email Triage uses on-device AI to classify your Gmail — without your email ever leaving your phone.</p>
+    <div class="cta-row">
+      <a href="privacy.html" class="btn-ghost">Privacy Policy</a>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <p class="section-label">Why Email Triage</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h2>Stays on your device</h2>
+        <p>Email content never reaches a developer server. Classification runs on-device using Apple Intelligence.</p>
       </div>
-      <div class="feature">
-        <h2>📱 iOS native</h2>
-        <p>Built in Swift and SwiftUI for iPhone. Uses Apple's on-device AI for classification. Falls back to your own OpenAI or Anthropic API key — never a shared backend.</p>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h2>iOS native</h2>
+        <p>Built in Swift and SwiftUI. No web wrapper, no React Native — a proper iPhone app with full privacy controls.</p>
       </div>
-      <div class="feature">
-        <h2>✅ You confirm before anything changes</h2>
-        <p>Email Triage shows you exactly what it classified and why before applying any labels. Bulk actions require explicit confirmation.</p>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h2>You confirm first</h2>
+        <p>Email Triage shows exactly what it classified and why before applying any labels or making any changes.</p>
       </div>
     </div>
-  </main>
+  </section>
+
+  <section class="privacy-strip">
+    <div class="privacy-box">
+      <div class="icon">🛡️</div>
+      <div>
+        <h3>No backend. No data sharing. No surprises.</h3>
+        <p>Your Google credentials are stored in the iOS Keychain. The app talks directly to Gmail's API using your own OAuth session. The developer has no visibility into your inbox — ever.</p>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p><a href="privacy.html">Privacy Policy</a></p>
+    <p><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; Contact: <a href="mailto:ios-email-triage@grahamveitch.com">ios-email-triage@grahamveitch.com</a></p>
   </footer>
+
 </body>
 </html>
